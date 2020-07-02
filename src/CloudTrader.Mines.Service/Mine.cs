@@ -17,7 +17,7 @@ namespace CloudTrader.Mines.Service
         public double Temperature { get; set; }
 
         [Required]
-        [Range(0, 100)]
+        [Range(0, int.MaxValue)]
         public int Stock { get; set; }
     }
 }

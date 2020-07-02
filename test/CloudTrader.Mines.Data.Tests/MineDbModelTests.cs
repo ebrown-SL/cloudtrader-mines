@@ -116,23 +116,5 @@ namespace CloudTrader.Mines.Data.Tests
 
             Assert.True(isNotValid);
         }
-
-        [Test]
-        public void Stock_Over100_isNotValid()
-        {
-            var mine = new MineDbModel
-            {
-                Id = 1,
-                Longitude = 0,
-                Latitude = 0,
-                Temperature = 10,
-                Stock = 101
-            };
-
-            var validationResults = new List<ValidationResult>();
-            var isNotValid = !Validator.TryValidateObject(mine, new ValidationContext(mine), validationResults, true);
-
-            Assert.True(isNotValid);
-        }
     }
 }
