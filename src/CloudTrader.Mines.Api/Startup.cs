@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Microsoft.OpenApi.Models;
 
 namespace CloudTrader.Mines.Api
 {
@@ -30,7 +31,19 @@ namespace CloudTrader.Mines.Api
                 options.Filters.Add(new GlobalExceptionFilter());
             });
             services.AddDbContext<MineContext>();
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo
+                {
+                    Version = "v1",
+                    Title = "CloudTrader-Mines API",
+                    Description = "Endpoints for the CloudTrader-Mines service"
+                });
+
+                c.EnableAnnotations();
+            });
+
+
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

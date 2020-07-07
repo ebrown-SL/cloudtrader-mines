@@ -1,7 +1,9 @@
 ﻿using CloudTrader.Mines.Models.API;
 using CloudTrader.Mines.Service;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
+using Swashbuckle.AspNetCore.Annotations;
 
 namespace CloudTrader.Mines.Api.Controllers
 {
@@ -17,6 +19,8 @@ namespace CloudTrader.Mines.Api.Controllers
         }
 
         [HttpGet]
+        [SwaggerOperation(Summary = "Get all mines", Description = "Returns an empty list if no mines exist")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Success", typeof(System.Collections.Generic.List<Mine>))]
         public async Task<IActionResult> GetMines()
         {
             var mines = await _mineService.GetMines();
@@ -25,7 +29,10 @@ namespace CloudTrader.Mines.Api.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<IActionResult> GetMine(int id)
+        [SwaggerOperation(Summary = "Finds a mine by ID")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Mine found", typeof(Mine))]
+        [SwaggerResponse(StatusCodes.Status404NotFound, "Mine was not found")]
+        public async Task<IActionResult> GetMine([FromRoute, SwaggerParameter("The mine id")]int id)
         {
             var mine = await _mineService.GetMine(id);
 
@@ -33,11 +40,14 @@ namespace CloudTrader.Mines.Api.Controllers
         }
 
         [HttpPost]
-        public async Task<IActionResult> CreateMine(MineCreationModel creationModel)
+        [SwaggerOperation(Summary = "Creates a new mine")]
+        [SwaggerResponse(StatusCodes.Status201Created, "Mine created", typeof(Mine))]
+        [SwaggerResponse(StatusCodes.Status400BadRequest, "The mine data was invalid")]
+        public async Task<IActionResult> CreateMine([FromBody, SwaggerRequestBody("The mine creation payload")] MineCreationModel creationModel)
         {
             var mine = await _mineService.CreateMine(creationModel.Coordinates);
 
-            return Ok(mine);
+            return Created($"api/mine/{mine.Id}", mine);
         }
     }
 }
