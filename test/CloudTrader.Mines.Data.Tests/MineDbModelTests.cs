@@ -112,9 +112,9 @@ namespace CloudTrader.Mines.Data.Tests
             };
 
             var validationResults = new List<ValidationResult>();
-            var isNotValid = !Validator.TryValidateObject(mine, new ValidationContext(mine), validationResults, true);
+            var isValid = Validator.TryValidateObject(mine, new ValidationContext(mine), validationResults, true);
 
-            Assert.True(isNotValid);
+            Assert.False(isValid);
         }
     }
 }
