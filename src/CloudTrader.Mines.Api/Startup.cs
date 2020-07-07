@@ -30,6 +30,7 @@ namespace CloudTrader.Mines.Api
                 options.Filters.Add(new GlobalExceptionFilter());
             });
             services.AddDbContext<MineContext>();
+            services.AddSwaggerGen();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -38,6 +39,13 @@ namespace CloudTrader.Mines.Api
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "CloudTrader-Mines API");
+            });
 
             app.UseRouting();
 
