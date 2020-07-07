@@ -16,5 +16,8 @@ namespace CloudTrader.Mines.Models.Service
         [Required]
         [Range(0, int.MaxValue)]
         public int Stock { get; set; }
+
+        [Required]
+        public string Name { get; set; }
     }
 }

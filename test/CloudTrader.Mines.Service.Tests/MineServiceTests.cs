@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CloudTrader.Mines.Models.Data;
 using CloudTrader.Mines.Models.Service;
+using Castle.Core.Internal;
 
 namespace CloudTrader.Mines.Service.Tests
 {
@@ -77,6 +78,35 @@ namespace CloudTrader.Mines.Service.Tests
             var mine = await mineService.GetMine(1);
 
             Assert.AreEqual(1, mine.Id);
+        }
+
+        [Test]
+        public async Task GetMines_NoMines_ReturnsEmptyList()
+        {
+            var mockMineRepository = new Mock<IMineRepository>();
+            var mineService = new MineService(mockMineRepository.Object);
+
+            mockMineRepository.Setup(mock => mock.GetMines()).ReturnsAsync(new List<Mine>());
+
+            var mines = await mineService.GetMines();
+            var isEmpty = mines.Count == 0;
+
+            Assert.True(isEmpty);
+        }
+
+        [Test]
+        public async Task GetMines_MinesFound_ReturnsListOfMines()
+        {
+            var mockMineRepository = new Mock<IMineRepository>();
+            var mineService = new MineService(mockMineRepository.Object);
+
+            mockMineRepository.Setup(mock => mock.GetMines()).ReturnsAsync(new List<Mine>() {
+                new Mine(), new Mine(), new Mine() });
+
+            var mines = await mineService.GetMines();
+            var hasMines = mines.Count == 3;
+
+            Assert.True(hasMines);
         }
     }
 }

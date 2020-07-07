@@ -16,6 +16,14 @@ namespace CloudTrader.Mines.Api.Controllers
             _mineService = mineService;
         }
 
+        [HttpGet]
+        public async Task<IActionResult> GetMines()
+        {
+            var mines = await _mineService.GetMines();
+
+            return Ok(mines);
+        }
+
         [HttpGet("{id}")]
         public async Task<IActionResult> GetMine(int id)
         {
