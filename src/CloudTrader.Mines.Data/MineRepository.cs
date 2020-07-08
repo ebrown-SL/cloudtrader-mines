@@ -21,14 +21,13 @@ namespace CloudTrader.Mines.Data
             return mine;
         }
 
-        public async Task<List<Mine>> GetMines()
+        public async Task<List<MineDbModel>> GetMines()
         {
-            var mineDbModels = await _context.Mines.ToListAsync();
-            var mines = _mapper.Map<List<Mine>>(mineDbModels);
+            var mines = await _context.Mines.ToListAsync();
             return mines;
         }
 
-        public async Task SaveMine(Mine mine)
+        public async Task<MineDbModel> SaveMine(MineDbModel mine)
         {
             _context.Mines.Add(mine);
             await _context.SaveChangesAsync();

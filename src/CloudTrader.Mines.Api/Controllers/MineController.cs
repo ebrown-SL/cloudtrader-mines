@@ -4,10 +4,11 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using Swashbuckle.AspNetCore.Annotations;
+using CloudTrader.Mines.Models.Service;
 
 namespace CloudTrader.Mines.Api.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/mine")]
     [ApiController]
     public class MineController : ControllerBase
     {
@@ -45,7 +46,7 @@ namespace CloudTrader.Mines.Api.Controllers
         [SwaggerResponse(StatusCodes.Status400BadRequest, "The mine data was invalid")]
         public async Task<IActionResult> CreateMine([FromBody, SwaggerRequestBody("The mine creation payload")] MineCreationModel creationModel)
         {
-            var mine = await _mineService.CreateMine(creationModel.Coordinates);
+            var mine = await _mineService.CreateMine(creationModel.Name, creationModel.Coordinates);
 
             return Created($"api/mine/{mine.Id}", mine);
         }

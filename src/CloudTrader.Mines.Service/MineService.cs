@@ -2,7 +2,6 @@
 using CloudTrader.Mines.Models.Data;
 using CloudTrader.Mines.Models.Service;
 using CloudTrader.Mines.Service.Exceptions;
-﻿using CloudTrader.Mines.Service.Exceptions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 
@@ -10,7 +9,7 @@ namespace CloudTrader.Mines.Service
 {
     public interface IMineService
     {
-        Task<Mine> CreateMine(GeographicCoordinates coordinates);
+        Task<Mine> CreateMine(string name, GeographicCoordinates coordinates);
         Task<Mine> GetMine(int id);
         Task<List<Mine>> GetMines();
     }
@@ -26,9 +25,9 @@ namespace CloudTrader.Mines.Service
             _mapper = mapper;
         }
 
-        public async Task<Mine> CreateMine(GeographicCoordinates coordinates)
+        public async Task<Mine> CreateMine(string name, GeographicCoordinates coordinates)
         {
-            var mineDbModel = new MineDbModel { Latitude = coordinates.Latitude, Longitude = coordinates.Longitude };
+            var mineDbModel = new MineDbModel { Name = name, Latitude = coordinates.Latitude, Longitude = coordinates.Longitude };
 
             var savedMine = await _mineRepository.SaveMine(mineDbModel);
 
@@ -50,7 +49,7 @@ namespace CloudTrader.Mines.Service
         public async Task<List<Mine>> GetMines()
         {
             var mines = await _mineRepository.GetMines();
-            return mines;
+            return _mapper.Map<List<Mine>>(mines);
         }
     }
 }
