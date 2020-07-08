@@ -14,11 +14,11 @@ namespace CloudTrader.Mines.Models.Data
         public double? Longitude { get; set; }
 
         [Required]
-        public double Temperature { get; set; }
+        public double? Temperature { get; set; }
 
         [Required]
         [Range(0, int.MaxValue)]
-        public int Stock { get; set; }
+        public int? Stock { get; set; }
 
         [Required]
         public string Name { get; set; }

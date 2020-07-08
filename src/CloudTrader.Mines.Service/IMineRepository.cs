@@ -11,5 +11,7 @@ namespace CloudTrader.Mines.Service
         Task<MineDbModel> GetMine(int id);
 
         Task<List<MineDbModel>> GetMines();
+
+        Task<MineDbModel> UpdateMine(MineDbModel mine);
     }
 }

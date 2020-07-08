@@ -12,6 +12,7 @@ namespace CloudTrader.Mines.Service
         Task<Mine> CreateMine(string name, GeographicCoordinates coordinates);
         Task<Mine> GetMine(int id);
         Task<List<Mine>> GetMines();
+        Task<Mine> UpdateMine(int id, MineUpdateModel updatedMine);
     }
     public class MineService : IMineService
     {
@@ -50,6 +51,18 @@ namespace CloudTrader.Mines.Service
         {
             var mines = await _mineRepository.GetMines();
             return _mapper.Map<List<Mine>>(mines);
+        }
+
+        public async Task<Mine> UpdateMine(int id, MineUpdateModel updateMine)
+        {
+            var mineDbModel = _mapper.Map<MineDbModel>(updateMine);
+            mineDbModel.Id = id;
+            var mine = await _mineRepository.UpdateMine(mineDbModel);
+            if (mine == null)
+            {
+                throw new MineNotFoundException(id);
+            }
+            return _mapper.Map<Mine>(mine);
         }
     }
 }
