@@ -1,4 +1,4 @@
-﻿using CloudTrader.Mines.Api.Models;
+﻿using CloudTrader.Mines.Models.API;
 using CloudTrader.Mines.Service;
 using Microsoft.AspNetCore.Mvc;
 using System.Threading.Tasks;
@@ -27,7 +27,7 @@ namespace CloudTrader.Mines.Api.Controllers
         [HttpPost]
         public async Task<IActionResult> CreateMine(MineCreationModel creationModel)
         {
-            var mine = await _mineService.CreateMine(creationModel.Id, creationModel.Latitude, creationModel.Longitude);
+            var mine = await _mineService.CreateMine(creationModel.Coordinates);
 
             return Ok(mine);
         }

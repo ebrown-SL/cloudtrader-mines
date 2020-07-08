@@ -6,6 +6,9 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Src", "Src", "{81D29C2D-9179-4326-91B1-27519AFE5473}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudTrader.Mines.Api", "src\CloudTrader.Mines.Api\CloudTrader.Mines.Api.csproj", "{AC0F2533-3460-4CF8-BF6D-A234F31DFD18}"
+	ProjectSection(ProjectDependencies) = postProject
+		{72722AB2-9366-49E8-A119-F77DC2178C21} = {72722AB2-9366-49E8-A119-F77DC2178C21}
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudTrader.Mines.Data", "src\CloudTrader.Mines.Data\CloudTrader.Mines.Data.csproj", "{3EC5DA7E-482E-4829-85EC-870FEB096652}"
 EndProject
@@ -13,14 +16,14 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudTrader.Mines.Service",
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Test", "Test", "{31AFE84C-CBE0-4EC8-B3A7-4947D1417D6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudTrader.Mines.Api.Tests", "test\CloudTrader.Mines.Api.Tests\CloudTrader.Mines.Api.Tests.csproj", "{DCAACA54-05F3-4F93-9566-F56DBC7C3F7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudTrader.Mines.Service.Tests", "test\CloudTrader.Mines.Service.Tests\CloudTrader.Mines.Service.Tests.csproj", "{ADA84FA2-9040-4356-8CF5-19D9895E8D34}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudTrader.Mines.Data.Tests", "test\CloudTrader.Mines.Data.Tests\CloudTrader.Mines.Data.Tests.csproj", "{7EBD66AF-25F2-4C92-ACDD-50A4815F583F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudTrader.Mines.Models", "src\CloudTrader.Mines.Models\CloudTrader.Mines.Models.csproj", "{72722AB2-9366-49E8-A119-F77DC2178C21}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CloudTrader.Mines.Models.Tests", "test\CloudTrader.Mines.Models.Tests\CloudTrader.Mines.Models.Tests.csproj", "{AB15B2F3-336E-4CA3-ADD1-D5F48A85672A}"
 	ProjectSection(ProjectDependencies) = postProject
-		{3EC5DA7E-482E-4829-85EC-870FEB096652} = {3EC5DA7E-482E-4829-85EC-870FEB096652}
+		{72722AB2-9366-49E8-A119-F77DC2178C21} = {72722AB2-9366-49E8-A119-F77DC2178C21}
 	EndProjectSection
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CloudTrader.Mines.Service.Tests", "test\CloudTrader.Mines.Service.Tests\CloudTrader.Mines.Service.Tests.csproj", "{ADA84FA2-9040-4356-8CF5-19D9895E8D34}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -40,18 +43,18 @@ Global
 		{660F238B-014E-4088-9ECC-8F362D32FACA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{660F238B-014E-4088-9ECC-8F362D32FACA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{660F238B-014E-4088-9ECC-8F362D32FACA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{DCAACA54-05F3-4F93-9566-F56DBC7C3F7D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{DCAACA54-05F3-4F93-9566-F56DBC7C3F7D}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{DCAACA54-05F3-4F93-9566-F56DBC7C3F7D}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{DCAACA54-05F3-4F93-9566-F56DBC7C3F7D}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7EBD66AF-25F2-4C92-ACDD-50A4815F583F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7EBD66AF-25F2-4C92-ACDD-50A4815F583F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7EBD66AF-25F2-4C92-ACDD-50A4815F583F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7EBD66AF-25F2-4C92-ACDD-50A4815F583F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ADA84FA2-9040-4356-8CF5-19D9895E8D34}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ADA84FA2-9040-4356-8CF5-19D9895E8D34}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ADA84FA2-9040-4356-8CF5-19D9895E8D34}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{ADA84FA2-9040-4356-8CF5-19D9895E8D34}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72722AB2-9366-49E8-A119-F77DC2178C21}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72722AB2-9366-49E8-A119-F77DC2178C21}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72722AB2-9366-49E8-A119-F77DC2178C21}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72722AB2-9366-49E8-A119-F77DC2178C21}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AB15B2F3-336E-4CA3-ADD1-D5F48A85672A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AB15B2F3-336E-4CA3-ADD1-D5F48A85672A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AB15B2F3-336E-4CA3-ADD1-D5F48A85672A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AB15B2F3-336E-4CA3-ADD1-D5F48A85672A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -60,9 +63,9 @@ Global
 		{AC0F2533-3460-4CF8-BF6D-A234F31DFD18} = {81D29C2D-9179-4326-91B1-27519AFE5473}
 		{3EC5DA7E-482E-4829-85EC-870FEB096652} = {81D29C2D-9179-4326-91B1-27519AFE5473}
 		{660F238B-014E-4088-9ECC-8F362D32FACA} = {81D29C2D-9179-4326-91B1-27519AFE5473}
-		{DCAACA54-05F3-4F93-9566-F56DBC7C3F7D} = {31AFE84C-CBE0-4EC8-B3A7-4947D1417D6C}
-		{7EBD66AF-25F2-4C92-ACDD-50A4815F583F} = {31AFE84C-CBE0-4EC8-B3A7-4947D1417D6C}
 		{ADA84FA2-9040-4356-8CF5-19D9895E8D34} = {31AFE84C-CBE0-4EC8-B3A7-4947D1417D6C}
+		{72722AB2-9366-49E8-A119-F77DC2178C21} = {81D29C2D-9179-4326-91B1-27519AFE5473}
+		{AB15B2F3-336E-4CA3-ADD1-D5F48A85672A} = {31AFE84C-CBE0-4EC8-B3A7-4947D1417D6C}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7FC6E6C4-9F90-4087-99C1-5BE1A02CF407}

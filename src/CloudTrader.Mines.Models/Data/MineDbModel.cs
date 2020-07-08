@@ -1,17 +1,17 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace CloudTrader.Mines.Service
+namespace CloudTrader.Mines.Models.Data
 {
-    public class Mine
+    public class MineDbModel
     {
         [Key]
         public int Id { get; set; }
 
         [Required]
-        public double Latitude { get; set; }
+        public double? Latitude { get; set; }
 
         [Required]
-        public double Longitude { get; set; }
+        public double? Longitude { get; set; }
 
         [Required]
         public double Temperature { get; set; }

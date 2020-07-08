@@ -1,11 +1,12 @@
-﻿using System.Threading.Tasks;
+﻿using CloudTrader.Mines.Models.Data;
+using System.Threading.Tasks;
 
 namespace CloudTrader.Mines.Service
 {
     public interface IMineRepository
     {
-        Task SaveMine(Mine mine);
+        Task<MineDbModel> SaveMine(MineDbModel mine);
 
-        Task<Mine> GetMine(int id);
+        Task<MineDbModel> GetMine(int id);
     }
 }

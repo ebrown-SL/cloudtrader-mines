@@ -29,6 +29,7 @@ namespace CloudTrader.Mines.Api
             {
                 options.Filters.Add(new GlobalExceptionFilter());
             });
+            services.AddDbContext<MineContext>();
         }
 
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
