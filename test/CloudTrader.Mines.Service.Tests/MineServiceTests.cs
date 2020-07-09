@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 using AutoMapper;
 using CloudTrader.Mines.Models.Data;
 using CloudTrader.Mines.Models.Service;
-using Castle.Core.Internal;
 
 namespace CloudTrader.Mines.Service.Tests
 {
