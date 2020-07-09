@@ -3,6 +3,7 @@ using CloudTrader.Mines.Service;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace CloudTrader.Mines.Data
@@ -42,11 +43,16 @@ namespace CloudTrader.Mines.Data
             {
                 return null;
             }
-            mineToUpdate.Latitude = mine.Latitude.HasValue ? mine.Latitude : mineToUpdate.Latitude;
-            mineToUpdate.Longitude = mine.Longitude.HasValue ? mine.Latitude : mineToUpdate.Latitude;
-            mineToUpdate.Name = String.IsNullOrWhiteSpace(mine.Name) ? mine.Name : mineToUpdate.Name;
-            mineToUpdate.Stock = mine.Stock.HasValue ? mine.Stock : mineToUpdate.Stock;
-            mineToUpdate.Temperature = mine.Temperature.HasValue ? mine.Temperature : mineToUpdate.Temperature;
+            foreach (PropertyInfo prop in mine.GetType().GetProperties())
+            {
+                if (prop.GetValue(mine) != null)
+                {
+                    mineToUpdate
+                        .GetType()
+                        .GetProperty(prop.Name)
+                        .SetValue(mineToUpdate, prop.GetValue(mine));
+                }
+            }
             await _context.SaveChangesAsync();
             return mineToUpdate;
         }
