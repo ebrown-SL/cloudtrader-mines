@@ -12,6 +12,11 @@ namespace CloudTrader.Mines.Service
                 .ForMember(dest => dest.Latitude, act => act.MapFrom(src => src.Coordinates.Latitude))
                 .ForMember(dest => dest.Longitude, act => act.MapFrom(src => src.Coordinates.Longitude))
                 .ReverseMap();
+
+            CreateMap<MineUpdateModel, MineDbModel>()
+                .ForMember(dest => dest.Latitude, act => act.MapFrom(src => src.Coordinates.Latitude))
+                .ForMember(dest => dest.Longitude, act => act.MapFrom(src => src.Coordinates.Longitude))
+                .ReverseMap();
         }
     }
 }

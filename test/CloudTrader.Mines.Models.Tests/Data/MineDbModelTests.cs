@@ -16,7 +16,8 @@ namespace CloudTrader.Mines.Data.Tests
                 Longitude = 0,
                 Latitude = 0,
                 Temperature = 10,
-                Stock = 100
+                Stock = 100,
+                Name = "Test"
             };
 
             Assert.IsNotNull(mine.Id);
@@ -31,7 +32,8 @@ namespace CloudTrader.Mines.Data.Tests
                 Longitude = 0,
                 Latitude = 0,
                 Temperature = 10,
-                Stock = stock
+                Stock = stock,
+                Name = "Test"
             };
 
             Assert.IsNotNull(mine.Stock);
@@ -46,7 +48,8 @@ namespace CloudTrader.Mines.Data.Tests
                 Longitude = longitude,
                 Latitude = 0,
                 Temperature = 10,
-                Stock = 0
+                Stock = 0,
+                Name = "Test"
             };
 
             Assert.IsNotNull(mine.Longitude);
@@ -61,7 +64,8 @@ namespace CloudTrader.Mines.Data.Tests
                 Longitude = 0,
                 Latitude = latitude,
                 Temperature = 10,
-                Stock = 0
+                Stock = 0,
+                Name = "Test"
             };
 
             Assert.IsNotNull(mine.Latitude);
@@ -76,7 +80,8 @@ namespace CloudTrader.Mines.Data.Tests
                 Longitude = 0,
                 Latitude = 0,
                 Temperature = temperature,
-                Stock = 0
+                Stock = 0,
+                Name = "Test"
             };
 
             Assert.IsNotNull(mine.Temperature);
@@ -91,11 +96,12 @@ namespace CloudTrader.Mines.Data.Tests
                 Longitude = 0,
                 Latitude = 0,
                 Temperature = 10,
-                Stock = 0
+                Stock = 0,
+                Name = "Test"
             };
 
             var validationResults = new List<ValidationResult>();
-            var isValid = Validator.TryValidateObject(mine, new ValidationContext(mine), validationResults);
+            var isValid = Validator.TryValidateObject(mine, new ValidationContext(mine), validationResults, true);
 
             Assert.True(isValid);
         }
@@ -109,7 +115,8 @@ namespace CloudTrader.Mines.Data.Tests
                 Longitude = 0,
                 Latitude = 0,
                 Temperature = 10,
-                Stock = -1
+                Stock = -1,
+                Name = "Test"
             };
 
             var validationResults = new List<ValidationResult>();

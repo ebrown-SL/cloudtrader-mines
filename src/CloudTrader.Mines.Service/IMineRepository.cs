@@ -1,4 +1,5 @@
 ﻿using CloudTrader.Mines.Models.Data;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace CloudTrader.Mines.Service
@@ -8,5 +9,9 @@ namespace CloudTrader.Mines.Service
         Task<MineDbModel> SaveMine(MineDbModel mine);
 
         Task<MineDbModel> GetMine(int id);
+
+        Task<List<MineDbModel>> GetMines();
+
+        Task<MineDbModel> UpdateMine(MineDbModel mine);
     }
 }
