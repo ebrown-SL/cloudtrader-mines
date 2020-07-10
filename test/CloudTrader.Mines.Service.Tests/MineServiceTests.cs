@@ -1,5 +1,6 @@
 using NUnit.Framework;
 using Moq;
+using FluentAssertions;
 using CloudTrader.Mines.Service.Exceptions;
 using System.ComponentModel.DataAnnotations;
 using System.Collections.Generic;
@@ -110,6 +111,38 @@ namespace CloudTrader.Mines.Service.Tests
             var hasMines = mines.Count == 3;
 
             Assert.True(hasMines);
+        }
+
+        [Test]
+        public void UpdateMine_IdNotFound_ReturnsMineNotFoundException()
+        {
+            var mockMineRepository = new Mock<IMineRepository>();
+            var config = new MapperConfiguration(cfg => cfg.AddProfile(profile));
+            var mapper = new Mapper(config);
+            var mineService = new MineService(mockMineRepository.Object, mapper);
+
+            mockMineRepository.Setup(mock => mock.UpdateMine(It.IsAny<MineDbModel>())).ReturnsAsync((MineDbModel)null);
+
+            Assert.ThrowsAsync<MineNotFoundException>(async () => await mineService.UpdateMine(1, new MineUpdateModel()));
+        }
+
+        [Test]
+        public async Task UpdateMine_ValidId_ReturnsUpdatedMine()
+        {
+            var mockMineRepository = new Mock<IMineRepository>();
+            var config = new MapperConfiguration(cfg => cfg.AddProfile(profile));
+            var mapper = new Mapper(config);
+            var mineService = new MineService(mockMineRepository.Object, mapper);
+
+            mockMineRepository
+                .Setup(mock => mock.UpdateMine(It.IsAny<MineDbModel>()))
+                .ReturnsAsync(new MineDbModel() { Id = 1, Latitude = 1, Longitude = 1, Name = "New", Stock = 1, Temperature = 1 });
+
+            var expectedUpdatedMine = new Mine() { Id = 1, Coordinates = new GeographicCoordinates(1, 1), Name = "New", Stock = 1, Temperature = 1 };
+            var actualUpdatedMine = await mineService
+                .UpdateMine(1, new MineUpdateModel() { Coordinates = new GeographicCoordinates(1, 1), Name = "New", Stock = 1, Temperature = 1 });
+
+            actualUpdatedMine.Should().BeEquivalentTo(expectedUpdatedMine);
         }
     }
 }
