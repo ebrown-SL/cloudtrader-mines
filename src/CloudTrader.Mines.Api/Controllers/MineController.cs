@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using Swashbuckle.AspNetCore.Annotations;
 using CloudTrader.Mines.Models.Service;
+using System.Collections.Generic;
 
 namespace CloudTrader.Mines.Api.Controllers
 {
@@ -20,11 +21,11 @@ namespace CloudTrader.Mines.Api.Controllers
         }
 
         [HttpGet]
-        [SwaggerOperation(Summary = "Get all mines", Description = "Returns an empty list if no mines exist")]
-        [SwaggerResponse(StatusCodes.Status200OK, "Success", typeof(System.Collections.Generic.List<Mine>))]
+        [SwaggerOperation(Summary = "Get all mines", Description = "Returns an object containing an array of mines")]
+        [SwaggerResponse(StatusCodes.Status200OK, "Success", typeof(GetAllMinesResponseModel))]
         public async Task<IActionResult> GetMines()
         {
-            var mines = await _mineService.GetMines();
+            var mines = new GetAllMinesResponseModel(await _mineService.GetMines());
 
             return Ok(mines);
         }
