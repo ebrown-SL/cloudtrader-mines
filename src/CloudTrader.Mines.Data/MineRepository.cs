@@ -15,6 +15,7 @@ namespace CloudTrader.Mines.Data
         public MineRepository(MineContext context)
         {
             _context = context;
+            _context.Database.EnsureCreated();
         }
 
         public async Task<MineDbModel> GetMine(int id)
