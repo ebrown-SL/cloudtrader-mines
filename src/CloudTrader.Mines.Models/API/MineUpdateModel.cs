@@ -1,4 +1,5 @@
 ﻿using Swashbuckle.AspNetCore.Annotations;
+using System.ComponentModel.DataAnnotations;
 
 namespace CloudTrader.Mines.Models.Service
 {
@@ -11,6 +12,7 @@ namespace CloudTrader.Mines.Models.Service
         public double? Temperature { get; set; }
 
         [SwaggerSchema("The mine stock")]
+        [Range(0, int.MaxValue)]
         public int? Stock { get; set; }
 
         [SwaggerSchema("The mine location name")]
