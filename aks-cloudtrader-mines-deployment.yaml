@@ -1,19 +1,19 @@
-apiVersion: extensions/v1beta1
+apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: cloudtrader-ui
+  name: cloudtrader-mines
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: cloudtrader-ui
+      app: cloudtrader-mines
   template:
     metadata:
       labels:
-        app: cloudtrader-ui
+        app: cloudtrader-mines
     spec:
       containers:
-      - name:cloudtrader-ui
-        image: cloudtrader.azurecr.io/cloudtrader-ui:latest
+      - name:cloudtrader-mines
+        image: cloudtrader.azurecr.io/cloudtrader-mines:v1
         ports:
         - containerPort: 80
