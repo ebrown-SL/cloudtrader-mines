@@ -1,0 +1,19 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cloudtrader-mines
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cloudtrader-mines
+  template:
+    metadata:
+      labels:
+        app: cloudtrader-mines
+    spec:
+      containers:
+      - name:cloudtrader-mines
+        image: cloudtrader.azurecr.io/cloudtrader-mines:v1
+        ports:
+        - containerPort: 80
