@@ -1,21 +1,31 @@
 ﻿using CloudTrader.Mines.Models.Data;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 
 namespace CloudTrader.Mines.Data
 {
     public class MineContext : DbContext
     {
-        public MineContext(DbContextOptions<MineContext> options) : base(options) { }
+        private readonly IConfiguration _configuration;
+
+        public MineContext(DbContextOptions<MineContext> options, IConfiguration configuration) : base(options)
+        {
+            _configuration = configuration;
+        }
 
         public DbSet<MineDbModel> Mines { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseInMemoryDatabase(databaseName: "Mines");
+            optionsBuilder.UseCosmos(
+                _configuration["CosmosEndpoint"],
+                _configuration["CosmosKey"],
+                databaseName: "CloudTrader");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            modelBuilder.HasDefaultContainer("Mines");
             modelBuilder.Entity<MineDbModel>().HasData(
                 new MineDbModel { Id = 1, Latitude = 17.38272783, Longitude = 98.27772635, Name = "Bristol", Stock = 3234, Temperature = 21 },
                 new MineDbModel { Id = 2, Latitude = -55.2819173, Longitude = 132.27263546, Name = "York", Stock = 142, Temperature = 19 },
