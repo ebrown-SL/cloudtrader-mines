@@ -1,5 +1,6 @@
 using CloudTrader.Mines.Models.Data;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -8,7 +9,7 @@ namespace CloudTrader.Mines.Data.Tests
     public class MineDbModelTests
     {
         [TestCase(null)]
-        public void Id_CannotBeNull(int id)
+        public void Id_CannotBeNull(Guid id)
         {
             var mine = new MineDbModel
             {
@@ -28,7 +29,7 @@ namespace CloudTrader.Mines.Data.Tests
         {
             var mine = new MineDbModel
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Longitude = 0,
                 Latitude = 0,
                 Temperature = 10,
@@ -44,7 +45,7 @@ namespace CloudTrader.Mines.Data.Tests
         {
             var mine = new MineDbModel
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Longitude = longitude,
                 Latitude = 0,
                 Temperature = 10,
@@ -60,7 +61,7 @@ namespace CloudTrader.Mines.Data.Tests
         {
             var mine = new MineDbModel
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Longitude = 0,
                 Latitude = latitude,
                 Temperature = 10,
@@ -76,7 +77,7 @@ namespace CloudTrader.Mines.Data.Tests
         {
             var mine = new MineDbModel
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Longitude = 0,
                 Latitude = 0,
                 Temperature = temperature,
@@ -92,7 +93,7 @@ namespace CloudTrader.Mines.Data.Tests
         {
             var mine = new MineDbModel
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Longitude = 0,
                 Latitude = 0,
                 Temperature = 10,
@@ -111,7 +112,7 @@ namespace CloudTrader.Mines.Data.Tests
         {
             var mine = new MineDbModel
             {
-                Id = 1,
+                Id = Guid.NewGuid(),
                 Longitude = 0,
                 Latitude = 0,
                 Temperature = 10,
