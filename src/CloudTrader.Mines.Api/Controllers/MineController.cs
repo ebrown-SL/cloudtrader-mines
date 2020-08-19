@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using System.Threading.Tasks;
 using Swashbuckle.AspNetCore.Annotations;
 using CloudTrader.Mines.Models.Service;
-using System.Collections.Generic;
+using System;
 
 namespace CloudTrader.Mines.Api.Controllers
 {
@@ -45,7 +45,7 @@ namespace CloudTrader.Mines.Api.Controllers
         [SwaggerOperation(Summary = "Find a mine by ID")]
         [SwaggerResponse(StatusCodes.Status200OK, "Mine found", typeof(Mine))]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Mine was not found")]
-        public async Task<IActionResult> GetMine([FromRoute, SwaggerParameter("The mine ID")] int id)
+        public async Task<IActionResult> GetMine([FromRoute, SwaggerParameter("The mine ID")] Guid id)
         {
             var mine = await _mineService.GetMine(id);
 
@@ -56,7 +56,7 @@ namespace CloudTrader.Mines.Api.Controllers
         [SwaggerOperation(Summary = "Update a mine")]
         [SwaggerResponse(StatusCodes.Status200OK, "Mine updated", typeof(Mine))]
         [SwaggerResponse(StatusCodes.Status404NotFound, "Mine was not found")]
-        public async Task<IActionResult> UpdateMine([FromRoute, SwaggerParameter("The mine ID")] int id, [FromBody, SwaggerRequestBody("The mine update payload")] MineUpdateModel updateModel)
+        public async Task<IActionResult> UpdateMine([FromRoute, SwaggerParameter("The mine ID")] Guid id, [FromBody, SwaggerRequestBody("The mine update payload")] MineUpdateModel updateModel)
         {
             var mine = await _mineService.UpdateMine(id, updateModel);
 
