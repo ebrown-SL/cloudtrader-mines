@@ -44,12 +44,14 @@ namespace CloudTrader.Mines.Service.Tests
             var mapper = new Mapper(config);
             var mineService = new MineService(mockMineRepository.Object, mapper);
 
+            Guid mineId = Guid.NewGuid();
+
             mockMineRepository.Setup(mock => mock.GetMine(It.IsAny<Guid>())).ReturnsAsync((MineDbModel)null);
-            mockMineRepository.Setup(mock => mock.SaveMine(It.IsAny<MineDbModel>())).ReturnsAsync(new MineDbModel() { Id = Guid.NewGuid() });
+            mockMineRepository.Setup(mock => mock.SaveMine(It.IsAny<MineDbModel>())).ReturnsAsync(new MineDbModel() { Id = mineId });
 
             var mine = await mineService.CreateMine("Test", coords);
 
-            Assert.AreEqual(1, mine.Id);
+            Assert.AreEqual(mineId, mine.Id);
         }
 
         [Test]
