@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.ComponentModel.DataAnnotations;
 
 namespace CloudTrader.Mines.Models.Data
 {
@@ -22,5 +23,11 @@ namespace CloudTrader.Mines.Models.Data
 
         [Required]
         public string Name { get; set; }
+
+        [Required]
+        public DateTime Time { get; set; }
+
+        [Required]
+        public string UpdateType { get; set; }
     }
 }
