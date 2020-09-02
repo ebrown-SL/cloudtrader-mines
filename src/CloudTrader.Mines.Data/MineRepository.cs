@@ -18,7 +18,7 @@ namespace CloudTrader.Mines.Data
             _context.Database.EnsureCreated();
         }
 
-        public async Task<MineDbModel> GetMine(int id)
+        public async Task<MineDbModel> GetMine(Guid id)
         {
             var mine = await _context.Mines.FindAsync(id);
             return mine;
