@@ -1,5 +1,6 @@
 using CloudTrader.Mines.Models.Data;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -17,7 +18,9 @@ namespace CloudTrader.Mines.Data.Tests
                 Latitude = 0,
                 Temperature = 10,
                 Stock = 100,
-                Name = "Test"
+                Name = "Test",
+                Time = DateTime.Now,
+                UpdateType = "trade"
             };
 
             Assert.IsNotNull(mine.Id);
@@ -33,7 +36,9 @@ namespace CloudTrader.Mines.Data.Tests
                 Latitude = 0,
                 Temperature = 10,
                 Stock = stock,
-                Name = "Test"
+                Name = "Test",
+                Time = DateTime.Now,
+                UpdateType = "trade"
             };
 
             Assert.IsNotNull(mine.Stock);
@@ -49,7 +54,9 @@ namespace CloudTrader.Mines.Data.Tests
                 Latitude = 0,
                 Temperature = 10,
                 Stock = 0,
-                Name = "Test"
+                Name = "Test",
+                Time = DateTime.Now,
+                UpdateType = "trade"
             };
 
             Assert.IsNotNull(mine.Longitude);
@@ -65,7 +72,9 @@ namespace CloudTrader.Mines.Data.Tests
                 Latitude = latitude,
                 Temperature = 10,
                 Stock = 0,
-                Name = "Test"
+                Name = "Test",
+                Time = DateTime.Now,
+                UpdateType = "trade"
             };
 
             Assert.IsNotNull(mine.Latitude);
@@ -81,7 +90,9 @@ namespace CloudTrader.Mines.Data.Tests
                 Latitude = 0,
                 Temperature = temperature,
                 Stock = 0,
-                Name = "Test"
+                Name = "Test",
+                Time = DateTime.Now,
+                UpdateType = "trade"
             };
 
             Assert.IsNotNull(mine.Temperature);
@@ -97,7 +108,9 @@ namespace CloudTrader.Mines.Data.Tests
                 Latitude = 0,
                 Temperature = 10,
                 Stock = 0,
-                Name = "Test"
+                Name = "Test",
+                Time = DateTime.Now,
+                UpdateType = "trade"
             };
 
             var validationResults = new List<ValidationResult>();
@@ -116,13 +129,51 @@ namespace CloudTrader.Mines.Data.Tests
                 Latitude = 0,
                 Temperature = 10,
                 Stock = -1,
-                Name = "Test"
+                Name = "Test",
+                Time = DateTime.Now,
+                UpdateType = "trade"
             };
 
             var validationResults = new List<ValidationResult>();
             var isValid = Validator.TryValidateObject(mine, new ValidationContext(mine), validationResults, true);
 
             Assert.False(isValid);
+        }
+
+        [TestCase(null)]
+        public void Time_CannotBeNull(DateTime time)
+        {
+            var mine = new MineDbModel
+            {
+                Id = 1,
+                Longitude = 0,
+                Latitude = 0,
+                Temperature = 0,
+                Stock = 0,
+                Name = "Test",
+                Time =time,
+                UpdateType = "trade"
+            };
+
+            Assert.IsNotNull(mine.Temperature);
+        }
+
+        [TestCase(null)]
+        public void UpdateType_CanBeNull(string type)
+        {
+            var mine = new MineDbModel
+            {
+                Id = 1,
+                Longitude = 0,
+                Latitude = 0,
+                Temperature = 0,
+                Stock = 0,
+                Name = "Test",
+                Time = DateTime.Now,
+                UpdateType = type
+            };
+
+            Assert.IsNull(mine.UpdateType);
         }
     }
 }
