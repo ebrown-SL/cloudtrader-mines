@@ -28,6 +28,6 @@ namespace CloudTrader.Mines.Models.Data
         public DateTime Time { get; set; }
 
         [Required]
-        public string UpdateType { get; set; }
+        public UpdateType Type { get; set; }
     }
 }

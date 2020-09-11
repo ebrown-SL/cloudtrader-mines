@@ -20,7 +20,7 @@ namespace CloudTrader.Mines.Data.Tests
                 Stock = 100,
                 Name = "Test",
                 Time = DateTime.Now,
-                UpdateType = "trade"
+                Type = new UpdateType { Type = "trade" }
             };
 
             Assert.IsNotNull(mine.Id);
@@ -38,7 +38,7 @@ namespace CloudTrader.Mines.Data.Tests
                 Stock = stock,
                 Name = "Test",
                 Time = DateTime.Now,
-                UpdateType = "trade"
+                Type = new UpdateType { Type = "trade" }
             };
 
             Assert.IsNotNull(mine.Stock);
@@ -56,7 +56,7 @@ namespace CloudTrader.Mines.Data.Tests
                 Stock = 0,
                 Name = "Test",
                 Time = DateTime.Now,
-                UpdateType = "trade"
+                Type = new UpdateType { Type = "trade" }
             };
 
             Assert.IsNotNull(mine.Longitude);
@@ -74,7 +74,7 @@ namespace CloudTrader.Mines.Data.Tests
                 Stock = 0,
                 Name = "Test",
                 Time = DateTime.Now,
-                UpdateType = "trade"
+                Type = new UpdateType { Type = "trade" }
             };
 
             Assert.IsNotNull(mine.Latitude);
@@ -92,7 +92,7 @@ namespace CloudTrader.Mines.Data.Tests
                 Stock = 0,
                 Name = "Test",
                 Time = DateTime.Now,
-                UpdateType = "trade"
+                Type = new UpdateType { Type = "trade" }
             };
 
             Assert.IsNotNull(mine.Temperature);
@@ -110,7 +110,7 @@ namespace CloudTrader.Mines.Data.Tests
                 Stock = 0,
                 Name = "Test",
                 Time = DateTime.Now,
-                UpdateType = "trade"
+                Type = new UpdateType { Type = "trade" }
             };
 
             var validationResults = new List<ValidationResult>();
@@ -131,7 +131,7 @@ namespace CloudTrader.Mines.Data.Tests
                 Stock = -1,
                 Name = "Test",
                 Time = DateTime.Now,
-                UpdateType = "trade"
+                Type = new UpdateType { Type = "trade" }
             };
 
             var validationResults = new List<ValidationResult>();
@@ -152,10 +152,10 @@ namespace CloudTrader.Mines.Data.Tests
                 Stock = 0,
                 Name = "Test",
                 Time =time,
-                UpdateType = "trade"
+                Type = new UpdateType { Type = "trade" }
             };
 
-            Assert.IsNotNull(mine.Temperature);
+            Assert.IsNotNull(mine.Time);
         }
 
         [TestCase(null)]
@@ -170,10 +170,10 @@ namespace CloudTrader.Mines.Data.Tests
                 Stock = 0,
                 Name = "Test",
                 Time = DateTime.Now,
-                UpdateType = type
+                Type = new UpdateType { Type = type }
             };
 
-            Assert.IsNull(mine.UpdateType);
+            Assert.IsNull(mine.Type);
         }
     }
 }
