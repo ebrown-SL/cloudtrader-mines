@@ -1,4 +1,5 @@
-﻿using Swashbuckle.AspNetCore.Annotations;
+﻿using CloudTrader.Mines.Models.Data;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.ComponentModel.DataAnnotations;
 
@@ -20,7 +21,7 @@ namespace CloudTrader.Mines.Models.Service
         public string Name { get; set; }
 
         [SwaggerSchema("The type of update")]
-        public string UpdateType { get; set; }
+        public UpdateType UpdateType { get; set; }
 
         [SwaggerSchema("The date and time of the update")]
         public DateTime Time { get; set; }
