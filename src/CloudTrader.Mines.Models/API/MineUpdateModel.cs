@@ -21,7 +21,18 @@ namespace CloudTrader.Mines.Models.Service
         public string Name { get; set; }
 
         [SwaggerSchema("The type of update")]
-        public UpdateType UpdateType { get; set; }
+        public UpdateType UpdateType {
+            get => updateType;
+            set {
+                if (!(value == UpdateType.trade || value == UpdateType.weather)) {
+                    throw new System.ArgumentException("UpdateType is invalid");
+                } else {
+                    updateType = value;
+                } 
+            }
+        }
+
+        private UpdateType updateType;
 
         [SwaggerSchema("The date and time of the update")]
         public DateTime Time { get; set; }

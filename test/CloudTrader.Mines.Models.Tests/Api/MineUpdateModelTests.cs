@@ -82,20 +82,18 @@ namespace CloudTrader.Mines.Models.Tests.Api
             Assert.False(string.IsNullOrEmpty(mine.Name));
         }
 
-        //[TestCase(null)]
-        //public void MineUpdateModel_Type_CannotBeNull(UpdateType type)
-        //{
-        //    var mine = new MineUpdateModel
-        //    {
-        //        UpdateType = type
-        //    };
+        [TestCase(null)]
+        [TestCase(4)]
+        public void MineUpdateModel_Type_InvalidReturnsException(UpdateType type)
+        {
+            var mine = new MineUpdateModel { };
 
-        //    Assert.IsNotNull(mine.UpdateType);
-        //}
+            Assert.Throws<System.ArgumentException>(() => { mine.UpdateType = type; }) ;
+        }
 
         [TestCase(UpdateType.weather)]
         [TestCase(UpdateType.trade)]
-        public void MineUpdateModel_Type_MustBeValidEnum(UpdateType type)
+        public void MineUpdateModel_Type_ValidEnumReturnsNonNullValue(UpdateType type)
         {
             var mine = new MineUpdateModel
             {

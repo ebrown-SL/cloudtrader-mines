@@ -28,6 +28,21 @@ namespace CloudTrader.Mines.Models.Data
         public DateTime Time { get; set; }
 
         [Required]
-        public UpdateType Type { get; set; }
+        public UpdateType UpdateType
+        {
+            get => updateType;
+            set {
+                if (!(value == UpdateType.trade || value == UpdateType.weather))
+                {
+                    throw new System.ArgumentException("UpdateType is invalid");
+                }
+                else
+                {
+                    updateType = value;
+                }
+            }
+        }
+
+        private UpdateType updateType;
     }
 }
