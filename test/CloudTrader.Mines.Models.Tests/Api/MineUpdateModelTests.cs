@@ -1,4 +1,5 @@
 ﻿using CloudTrader.Mines.Models.API;
+using CloudTrader.Mines.Models.Data;
 using CloudTrader.Mines.Models.Service;
 using NUnit.Framework;
 using System;
@@ -81,26 +82,27 @@ namespace CloudTrader.Mines.Models.Tests.Api
             Assert.False(string.IsNullOrEmpty(mine.Name));
         }
 
-        [TestCase(null)]
-        public void MineUpdateModel_Type_CanBeNull(string type)
+        //[TestCase(null)]
+        //public void MineUpdateModel_Type_CannotBeNull(UpdateType type)
+        //{
+        //    var mine = new MineUpdateModel
+        //    {
+        //        UpdateType = type
+        //    };
+
+        //    Assert.IsNotNull(mine.UpdateType);
+        //}
+
+        [TestCase(UpdateType.weather)]
+        [TestCase(UpdateType.trade)]
+        public void MineUpdateModel_Type_MustBeValidEnum(UpdateType type)
         {
             var mine = new MineUpdateModel
             {
                 UpdateType = type
             };
 
-            Assert.IsNull(mine.UpdateType);
-        }
-
-        [TestCase("externalWeather")]
-        public void MineUpdateModel_Type_CanBeValidString(string type)
-        {
-            var mine = new MineUpdateModel
-            {
-                UpdateType = type
-            };
-
-            Assert.False(string.IsNullOrEmpty(mine.UpdateType));
+            Assert.IsNotNull(mine.UpdateType);
         }
 
         [TestCase(null)]
