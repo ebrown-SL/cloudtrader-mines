@@ -129,7 +129,7 @@ namespace CloudTrader.Mines.Service.Tests
 
             var mineUpdater = new MineUpdateModel { UpdateType = UpdateType.weather };
 
-            Assert.ThrowsAsync<MineNotFoundException>(async () => await mineService.UpdateMine(1, mineUpdater));
+            Assert.ThrowsAsync<MineNotFoundException>(async () => await mineService.UpdateMine(Guid.NewGuid(), mineUpdater));
         }
 
         [Test]
