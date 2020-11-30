@@ -1,4 +1,6 @@
-﻿using Swashbuckle.AspNetCore.Annotations;
+﻿using CloudTrader.Mines.Models.Data;
+using Swashbuckle.AspNetCore.Annotations;
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace CloudTrader.Mines.Models.Service
@@ -17,6 +19,23 @@ namespace CloudTrader.Mines.Models.Service
 
         [SwaggerSchema("The mine location name")]
         public string Name { get; set; }
+
+        [SwaggerSchema("The type of update")]
+        public UpdateType UpdateType {
+            get => updateType;
+            set {
+                if (!(value == UpdateType.trade || value == UpdateType.weather)) {
+                    throw new System.ArgumentException("UpdateType is invalid");
+                } else {
+                    updateType = value;
+                } 
+            }
+        }
+
+        private UpdateType updateType;
+
+        [SwaggerSchema("The date and time of the update")]
+        public DateTime Time { get; set; }
     }
 }
 

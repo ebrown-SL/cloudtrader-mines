@@ -125,9 +125,11 @@ namespace CloudTrader.Mines.Service.Tests
             var mapper = new Mapper(config);
             var mineService = new MineService(mockMineRepository.Object, mapper);
 
-            mockMineRepository.Setup(mock => mock.UpdateMine(It.IsAny<MineDbModel>())).ReturnsAsync((MineDbModel)null);
+            mockMineRepository.Setup(mock => mock.UpdateMine(It.Is<MineDbModel>(x => x.UpdateType == UpdateType.weather))).ReturnsAsync((MineDbModel)null);
 
-            Assert.ThrowsAsync<MineNotFoundException>(async () => await mineService.UpdateMine(Guid.NewGuid(), new MineUpdateModel()));
+            var mineUpdater = new MineUpdateModel { UpdateType = UpdateType.weather };
+
+            Assert.ThrowsAsync<MineNotFoundException>(async () => await mineService.UpdateMine(Guid.NewGuid(), mineUpdater));
         }
 
         [Test]
@@ -141,11 +143,11 @@ namespace CloudTrader.Mines.Service.Tests
 
             mockMineRepository
                 .Setup(mock => mock.UpdateMine(It.IsAny<MineDbModel>()))
-                .ReturnsAsync(new MineDbModel() { Id = expectedId, Latitude = 1, Longitude = 1, Name = "New", Stock = 1, Temperature = 1 });
+                .ReturnsAsync(new MineDbModel() { Id = expectedId, Latitude = 1, Longitude = 1, Name = "New", Stock = 1, Temperature = 1, UpdateType = UpdateType.weather });
 
             var expectedUpdatedMine = new Mine() { Id = expectedId, Coordinates = new GeographicCoordinates(1, 1), Name = "New", Stock = 1, Temperature = 1 };
             var actualUpdatedMine = await mineService
-                .UpdateMine(expectedId, new MineUpdateModel() { Coordinates = new GeographicCoordinates(1, 1), Name = "New", Stock = 1, Temperature = 1 });
+                .UpdateMine(expectedId, new MineUpdateModel() { Coordinates = new GeographicCoordinates(1, 1), Name = "New", Stock = 1, Temperature = 1, UpdateType = UpdateType.weather });
 
             actualUpdatedMine.Should().BeEquivalentTo(expectedUpdatedMine);
         }

@@ -1,6 +1,8 @@
 ﻿using CloudTrader.Mines.Models.API;
+using CloudTrader.Mines.Models.Data;
 using CloudTrader.Mines.Models.Service;
 using NUnit.Framework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
@@ -78,6 +80,51 @@ namespace CloudTrader.Mines.Models.Tests.Api
             };
 
             Assert.False(string.IsNullOrEmpty(mine.Name));
+        }
+
+        [TestCase(null)]
+        [TestCase(4)]
+        public void MineUpdateModel_Type_InvalidReturnsException(UpdateType type)
+        {
+            var mine = new MineUpdateModel { };
+
+            Assert.Throws<System.ArgumentException>(() => { mine.UpdateType = type; }) ;
+        }
+
+        [TestCase(UpdateType.weather)]
+        [TestCase(UpdateType.trade)]
+        public void MineUpdateModel_Type_ValidEnumReturnsNonNullValue(UpdateType type)
+        {
+            var mine = new MineUpdateModel
+            {
+                UpdateType = type
+            };
+
+            Assert.IsNotNull(mine.UpdateType);
+        }
+
+        [TestCase(null)]
+        public void MineUpdateModel_Time_CannotBeNull(DateTime time)
+        {
+            var mine = new MineUpdateModel
+            {
+                Time = time
+            };
+
+            Assert.IsNotNull(mine.Time);
+        }
+
+        [Test]
+        public void MineUpdateModel_Time_CanBeValidDateTime()
+        {
+            var mine = new MineUpdateModel
+            {
+                Time = new DateTime(2020, 09, 03, 12, 34, 22 )
+            };
+
+            var expectedDate = new DateTime(2020, 09, 03, 12, 34, 22);
+
+            Assert.AreEqual(expectedDate, mine.Time);
         }
     }
 }
