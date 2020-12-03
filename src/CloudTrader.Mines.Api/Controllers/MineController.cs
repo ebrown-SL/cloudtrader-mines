@@ -22,23 +22,11 @@ namespace CloudTrader.Mines.Api.Controllers
         }
 
         [HttpGet]
-        [AcceptHeader("application/vnd.scottlogic.cloudtrader.minelist")]
         [SwaggerOperation(Summary = "Get all mines", Description = "Returns an object containing an array of mines")]
         [SwaggerResponse(StatusCodes.Status200OK, "Success", typeof(GetAllMinesResponseModel))]
         public async Task<IActionResult> GetMines()
         {
             var mines = new GetAllMinesResponseModel(await _mineService.GetMines());
-
-            return Ok(mines);
-        }
-
-        [HttpGet]
-        [AcceptHeader("application/vnd.scottlogic.cloudtrader.minelookup")]
-        [SwaggerOperation(Summary = "Get all mines in the form of a dictionary indexed by MineId", Description = "Returns an object in the form of a dictionary, allowing correspondence between ID and Location name")]
-        [SwaggerResponse(StatusCodes.Status200OK, "Success", typeof(Dictionary<string, string>))]
-        public async Task<IActionResult> GetMineIdLocationNameDictionary()
-        {
-            var mines = await _mineService.GetMinesDictionary();
 
             return Ok(mines);
         }
