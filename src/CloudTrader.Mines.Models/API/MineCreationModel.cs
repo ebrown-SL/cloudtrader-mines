@@ -7,6 +7,7 @@ namespace CloudTrader.Mines.Models.API
     {
         [Required]
         public string Name { get; set; }
+
         [Required]
         public GeographicCoordinates Coordinates { get; set; }
     }

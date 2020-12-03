@@ -12,11 +12,16 @@ namespace CloudTrader.Mines.Service
     public interface IMineService
     {
         Task<Mine> CreateMine(string name, GeographicCoordinates coordinates);
+
         Task<Mine> GetMine(Guid id);
+
         Task<List<Mine>> GetMines();
-        Task<Dictionary<string, string>> GetMinesDictionary();
+
+        Task<Dictionary<Guid, string>> GetMinesDictionary();
+
         Task<Mine> UpdateMine(Guid id, MineUpdateModel updatedMine);
     }
+
     public class MineService : IMineService
     {
         private readonly IMineRepository _mineRepository;
@@ -26,6 +31,7 @@ namespace CloudTrader.Mines.Service
         public MineService(IMineRepository mineRepository, IMapper mapper)
         {
             _mineRepository = mineRepository;
+
             _mapper = mapper;
         }
 
@@ -36,7 +42,6 @@ namespace CloudTrader.Mines.Service
             var savedMine = await _mineRepository.SaveMine(mineDbModel);
 
             return _mapper.Map<Mine>(savedMine); ;
-
         }
 
         public async Task<Mine> GetMine(Guid id)

@@ -1,12 +1,12 @@
 ﻿using CloudTrader.Mines.Models.API;
-using CloudTrader.Mines.Service;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Http;
-using System.Threading.Tasks;
-using Swashbuckle.AspNetCore.Annotations;
 using CloudTrader.Mines.Models.Service;
+using CloudTrader.Mines.Service;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace CloudTrader.Mines.Api.Controllers
 {

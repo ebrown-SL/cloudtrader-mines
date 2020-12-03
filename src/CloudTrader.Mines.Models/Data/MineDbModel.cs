@@ -31,7 +31,8 @@ namespace CloudTrader.Mines.Models.Data
         public UpdateType UpdateType
         {
             get => updateType;
-            set {
+            set
+            {
                 if (!(value == UpdateType.trade || value == UpdateType.weather))
                 {
                     throw new System.ArgumentException("UpdateType is invalid");

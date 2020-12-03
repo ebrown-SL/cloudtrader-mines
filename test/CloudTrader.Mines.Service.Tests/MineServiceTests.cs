@@ -1,14 +1,14 @@
-using NUnit.Framework;
-using Moq;
-using FluentAssertions;
-using CloudTrader.Mines.Service.Exceptions;
-using System;
-using System.ComponentModel.DataAnnotations;
-using System.Collections.Generic;
-using System.Threading.Tasks;
 using AutoMapper;
 using CloudTrader.Mines.Models.Data;
 using CloudTrader.Mines.Models.Service;
+using CloudTrader.Mines.Service.Exceptions;
+using FluentAssertions;
+using Moq;
+using NUnit.Framework;
+using System;
+using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
+using System.Threading.Tasks;
 
 namespace CloudTrader.Mines.Service.Tests
 {

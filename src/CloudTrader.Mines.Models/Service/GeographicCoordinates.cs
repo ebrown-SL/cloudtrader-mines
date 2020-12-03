@@ -1,5 +1,4 @@
-﻿
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 
 namespace CloudTrader.Mines.Models.Service
 {
@@ -7,10 +6,13 @@ namespace CloudTrader.Mines.Models.Service
     {
         [Required]
         public double? Latitude { get; set; }
+
         [Required]
         public double? Longitude { get; set; }
 
-        public GeographicCoordinates() { }
+        public GeographicCoordinates()
+        {
+        }
 
         public GeographicCoordinates(double? latitude, double? longitude)
         {
