@@ -18,11 +18,16 @@ namespace CloudTrader.Mines.Api
 
         public override bool IsValidForRequest(RouteContext routeContext, ActionDescriptor action)
         {
-            if (!routeContext.HttpContext.Request.Headers.ContainsKey("Accept")) return false;
+            var accept = routeContext.HttpContext.Request.Headers.ContainsKey("Accept") ? routeContext.HttpContext.Request.Headers["Accept"].ToString() : null;
+            if (accept == null) return false;
 
-            var accept = routeContext.HttpContext.Request.Headers["Accept"].ToString();
+            var acceptWithoutFormat = accept;
+            if (accept.Contains("+"))
+            {
+                acceptWithoutFormat = accept.Substring(0, accept.IndexOf("+"));
+            }
 
-            return accept == _acceptType;
+            return acceptWithoutFormat == _acceptType;
         }
     }
 }
