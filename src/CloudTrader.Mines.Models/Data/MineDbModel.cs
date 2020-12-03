@@ -3,7 +3,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CloudTrader.Mines.Models.Data
 {
-    #nullable enable
+#nullable enable
+
     public class MineDbModel
     {
         [Key]
@@ -32,7 +33,8 @@ namespace CloudTrader.Mines.Models.Data
         public UpdateType UpdateType
         {
             get => updateType;
-            set {
+            set
+            {
                 if (!(value == UpdateType.trade || value == UpdateType.weather))
                 {
                     throw new System.ArgumentException("UpdateType is invalid");
@@ -46,5 +48,6 @@ namespace CloudTrader.Mines.Models.Data
 
         private UpdateType updateType;
     }
+
 #nullable restore
 }

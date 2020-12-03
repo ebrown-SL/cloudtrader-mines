@@ -5,8 +5,8 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CloudTrader.Mines.Models.Service
 {
+#nullable enable
 
-    #nullable enable
     public class MineUpdateModel
     {
         [SwaggerSchema("The mine coordinates")]
@@ -23,14 +23,19 @@ namespace CloudTrader.Mines.Models.Service
         public string? Name { get; set; }
 
         [SwaggerSchema("The type of update")]
-        public UpdateType UpdateType {
+        public UpdateType UpdateType
+        {
             get => updateType;
-            set {
-                if (!(value == UpdateType.trade || value == UpdateType.weather)) {
+            set
+            {
+                if (!(value == UpdateType.trade || value == UpdateType.weather))
+                {
                     throw new System.ArgumentException("UpdateType is invalid");
-                } else {
+                }
+                else
+                {
                     updateType = value;
-                } 
+                }
             }
         }
 
@@ -39,6 +44,6 @@ namespace CloudTrader.Mines.Models.Service
         [SwaggerSchema("The date and time of the update")]
         public DateTime Time { get; set; }
     }
-    #nullable restore
-}
 
+#nullable restore
+}

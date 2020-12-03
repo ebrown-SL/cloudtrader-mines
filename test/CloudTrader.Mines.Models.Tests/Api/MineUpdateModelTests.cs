@@ -1,5 +1,4 @@
-﻿using CloudTrader.Mines.Models.API;
-using CloudTrader.Mines.Models.Data;
+﻿using CloudTrader.Mines.Models.Data;
 using CloudTrader.Mines.Models.Service;
 using NUnit.Framework;
 using System;
@@ -88,7 +87,7 @@ namespace CloudTrader.Mines.Models.Tests.Api
         {
             var mine = new MineUpdateModel { };
 
-            Assert.Throws<System.ArgumentException>(() => { mine.UpdateType = type; }) ;
+            Assert.Throws<System.ArgumentException>(() => { mine.UpdateType = type; });
         }
 
         [TestCase(UpdateType.weather)]
@@ -119,7 +118,7 @@ namespace CloudTrader.Mines.Models.Tests.Api
         {
             var mine = new MineUpdateModel
             {
-                Time = new DateTime(2020, 09, 03, 12, 34, 22 )
+                Time = new DateTime(2020, 09, 03, 12, 34, 22)
             };
 
             var expectedDate = new DateTime(2020, 09, 03, 12, 34, 22);
