@@ -44,6 +44,5 @@ namespace CloudTrader.Mines.Models.Service
         [SwaggerSchema("The date and time of the update")]
         public DateTime Time { get; set; }
     }
-
 #nullable restore
 }

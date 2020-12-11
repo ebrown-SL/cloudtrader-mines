@@ -17,7 +17,7 @@ namespace CloudTrader.Mines.Service
 
         Task<List<Mine>> GetMines();
 
-        Task<Dictionary<string, string>> GetMinesDictionary();
+        Task<Dictionary<Guid, string>> GetMinesDictionary();
 
         Task<Mine> UpdateMine(Guid id, MineUpdateModel updatedMine);
     }
@@ -31,6 +31,7 @@ namespace CloudTrader.Mines.Service
         public MineService(IMineRepository mineRepository, IMapper mapper)
         {
             _mineRepository = mineRepository;
+
             _mapper = mapper;
         }
 

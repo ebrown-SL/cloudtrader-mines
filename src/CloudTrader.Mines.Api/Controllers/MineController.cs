@@ -7,6 +7,7 @@ using Swashbuckle.AspNetCore.Annotations;
 using System;
 using System.Threading.Tasks;
 
+
 namespace CloudTrader.Mines.Api.Controllers
 {
     [Route("api/mine")]
