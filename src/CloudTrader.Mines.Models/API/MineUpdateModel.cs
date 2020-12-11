@@ -5,8 +5,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CloudTrader.Mines.Models.Service
 {
-#nullable enable
-
     public class MineUpdateModel
     {
         [SwaggerSchema("The mine coordinates")]
@@ -44,5 +42,4 @@ namespace CloudTrader.Mines.Models.Service
         [SwaggerSchema("The date and time of the update")]
         public DateTime Time { get; set; }
     }
-#nullable restore
 }

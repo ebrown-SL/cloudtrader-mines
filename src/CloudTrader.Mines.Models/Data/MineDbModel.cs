@@ -3,8 +3,6 @@ using System.ComponentModel.DataAnnotations;
 
 namespace CloudTrader.Mines.Models.Data
 {
-#nullable enable
-
     public class MineDbModel
     {
         [Key]
@@ -48,6 +46,4 @@ namespace CloudTrader.Mines.Models.Data
 
         private UpdateType updateType;
     }
-
-#nullable restore
 }

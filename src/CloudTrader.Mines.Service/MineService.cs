@@ -17,8 +17,6 @@ namespace CloudTrader.Mines.Service
 
         Task<List<Mine>> GetMines();
 
-        Task<Dictionary<Guid, string>> GetMinesDictionary();
-
         Task<Mine> UpdateMine(Guid id, MineUpdateModel updatedMine);
     }
 
@@ -59,12 +57,6 @@ namespace CloudTrader.Mines.Service
         {
             var mines = await _mineRepository.GetMines();
             return _mapper.Map<List<Mine>>(mines);
-        }
-
-        public async Task<Dictionary<string, string>> GetMinesDictionary()
-        {
-            var mines = await _mineRepository.GetMines();
-            return mines.ToDictionary(x => x.Id.ToString(), x => x.Name);
         }
 
         public async Task<Mine> UpdateMine(Guid id, MineUpdateModel updateMine)
