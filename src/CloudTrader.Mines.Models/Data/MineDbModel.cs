@@ -22,7 +22,7 @@ namespace CloudTrader.Mines.Models.Data
         public int? Stock { get; set; }
 
         [Required]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [Required]
         public DateTime Time { get; set; }

@@ -8,7 +8,7 @@ namespace CloudTrader.Mines.Models.Service
     public class MineUpdateModel
     {
         [SwaggerSchema("The mine coordinates")]
-        public GeographicCoordinates Coordinates { get; set; }
+        public GeographicCoordinates? Coordinates { get; set; }
 
         [SwaggerSchema("The mine temperature")]
         public double? Temperature { get; set; }
@@ -18,7 +18,7 @@ namespace CloudTrader.Mines.Models.Service
         public int? Stock { get; set; }
 
         [SwaggerSchema("The mine location name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [SwaggerSchema("The type of update")]
         public UpdateType UpdateType

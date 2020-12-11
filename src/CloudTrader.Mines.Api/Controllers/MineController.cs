@@ -5,8 +5,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
 using System;
-using System.Collections.Generic;
 using System.Threading.Tasks;
+
 
 namespace CloudTrader.Mines.Api.Controllers
 {
@@ -27,16 +27,6 @@ namespace CloudTrader.Mines.Api.Controllers
         public async Task<IActionResult> GetMines()
         {
             var mines = new GetAllMinesResponseModel(await _mineService.GetMines());
-
-            return Ok(mines);
-        }
-
-        [HttpGet]
-        [SwaggerOperation(Summary = "Get all mines in the form of a dictionary indexed by MineId", Description = "Returns an object in the form of a dictionary, allowing correspondence between ID and Location name")]
-        [SwaggerResponse(StatusCodes.Status200OK, "Success", typeof(Dictionary<Guid, string>))]
-        public async Task<IActionResult> GetMineIdLocationNameDictionary()
-        {
-            var mines = await _mineService.GetMinesDictionary();
 
             return Ok(mines);
         }
